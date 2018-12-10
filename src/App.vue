@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      language: "english",
+      language: localStorage.getItem("ezpath-language"),
       languagesDisplayed: ["english", "french", "german", "italian", "dutch"],
       translations: Translations
     };
@@ -41,6 +41,7 @@ export default {
   methods: {
     selectLanguage(e) {
       this.language = e.target.alt;
+      localStorage.setItem("ezpath-language", e.target.alt);
     }
   }
 };
