@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      language: localStorage.getItem("ezpath-language"),
+      language: localStorage.getItem("ezpath-language") || "english",
       languagesDisplayed: ["english", "french", "german", "italian", "dutch"],
       translations: Translations
     };
