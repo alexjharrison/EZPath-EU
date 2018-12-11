@@ -3,7 +3,7 @@
     <div @click="$emit('closeModal')" class="modal-mask">
       <div @click.stop class="modal-vid">
         <div class="modal-top">
-          <h3 class="modal-header">{{ text.instVid }}</h3>
+          <h3 class="modal-header">{{ text["Vidéo d'installation"] }}</h3>
           <button class="close-button" @click="$emit('closeModal')">Close</button>
         </div>
         <iframe

@@ -3,10 +3,10 @@
     <div class="header">
       <div class="header-text">
         <img class="logo" src="./assets/ezPathLogoOrange.png" alt="logo">
-        <h1>{{" "}}{{ translations[language].title }}</h1>
+        <h1>{{" "}}{{ translations[language]["System Selector"] }}</h1>
       </div>
       <div class="lang-col">
-        <p>{{ translations[language].language }}</p>
+        <p>{{ translations[language]["Select Language"] }}</p>
         <div class="language-select">
           <img
             v-for="languageDisplayed in languagesDisplayed"
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <MainContent :text="translations[language]"/>
+    <MainContent :text="translations[language]" :allText="translations"/>
   </div>
 </template>
 

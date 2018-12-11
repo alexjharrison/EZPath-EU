@@ -1,17 +1,24 @@
 <template>
-<div>
-  <h3 class="category-name">{{categoryName}}</h3>
-  <treeselect v-on:input="checked"  
-    v-model="value" :multiple="true" :options="options" 
-    :always-open="true" :flat="true" placeholder=""
-    :auto-select-ancestors="true" :auto-deselect-descendants="true" 
-    sort-value-by="INDEX" :searchable="false" 
-    open-direction="below" :max-height="500" class="drop-downs"
-    :key="this.filters[0].label"
-  />
-  
-</div>
-  
+  <div>
+    <h3 class="category-name">{{categoryName}}</h3>
+    <treeselect
+      v-on:input="checked"
+      v-model="value"
+      :multiple="true"
+      :options="options"
+      :always-open="true"
+      :flat="true"
+      placeholder
+      :auto-select-ancestors="true"
+      :auto-deselect-descendants="true"
+      sort-value-by="INDEX"
+      :searchable="false"
+      open-direction="below"
+      :max-height="500"
+      class="drop-downs"
+      :key="this.filters[0].label"
+    />
+  </div>
 </template>
 
 <script>

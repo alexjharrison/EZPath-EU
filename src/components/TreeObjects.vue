@@ -1,14 +1,14 @@
 <template>
   <div class="tree-column">
-    <button class="reset" @click="clear">{{ text.clearAll }}</button>
+    <button class="reset" @click="clear">{{ text["Clear All"] }}</button>
     <FilterCategory
-      v-for="(category,index) in filterStructure"
+      v-for="(category,index) in filterStructureTranslated"
       class="filter-prop"
       :categoryName="category.category"
       :filters="category.filters"
       :disabledList="isDisabled"
       v-on:checked="onCheckClick"
-      :key="index"
+      :key="category.filters[category.filters.length-1].label"
       :index="index"
       :text="text"
       :reset="reset"
@@ -25,20 +25,24 @@ export default {
   components: {
     FilterCategory
   },
-  props: ["text"],
+  props: ["text", "allText"],
   data() {
     return {
       allProducts,
       allChecked: [],
       filteredProdList: this.allProducts,
       reset: false,
+      filterStructureEng: [...filterStructure],
+      filterStructureTranslated: filterStructure,
       //list of all checked id's
-      isDisabled: []
+      isDisabled: [],
+      phrases: Object.keys(this.allText.english)
     };
   },
   mounted() {
     this.filteredProdList = this.allProducts;
     this.isDisabled = disableCheckboxes(this.filteredProdList);
+    setTimeout(this.cloneAndStartTranslate, 0);
   },
   methods: {
     //push list of checked items from component and remove dupes
@@ -57,11 +61,46 @@ export default {
     },
     clear() {
       this.reset = !this.reset;
+    },
+    cloneAndStartTranslate() {
+      this.filterStructureTranslated = JSON.parse(
+        JSON.stringify(this.filterStructureEng)
+      );
+      console.log(this.filterStructureTranslated);
+      for (let i = 0; i < this.filterStructureTranslated.length; i++) {
+        this.recursiveTranslate(this.filterStructureTranslated[i]);
+      }
+    },
+    recursiveTranslate(node) {
+      if (node.category) {
+        //stuff on category
+        this.phrases.forEach(phrase => {
+          node.category = node.category.split(phrase).join(this.text[phrase]);
+          for (let i = 0; i < node.filters.length; i++) {
+            this.recursiveTranslate(node.filters[i]);
+          }
+        });
+      } else {
+        //stuff on label
+        this.phrases.forEach(phrase => {
+          node.label = node.label.split(phrase).join(this.text[phrase]);
+        });
+        if (node.children) {
+          for (let i = 0; i < node.children.length; i++) {
+            this.recursiveTranslate(node.children[i]);
+          }
+        }
+      }
     }
   },
-  computed: {
-    filterStructure() {
-      return filterStructure[this.text.lang];
+  watch: {
+    text() {
+      //translate checkboxes
+      this.cloneAndStartTranslate();
+
+      //clear product list
+      for (let i = 0; i < this.filteredProdList.length; i++)
+        this.onCheckClick({ value: i, checked: [] });
     }
   }
 };

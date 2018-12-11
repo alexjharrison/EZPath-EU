@@ -7,31 +7,31 @@
     <div class="prod-thumb">
       <h3 class="prod-thumb-title">{{prod.details.system_shown}}</h3>
       <img src="../assets/ezPathImage.png" alt="image-preview">
-      <div class="more-info">{{ text.moreInfo }}</div>
+      <div class="more-info">{{ text["More Info"] }}</div>
     </div>
     <ul class="dl-list">
       <a :href="prod.details.techDataSheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
-          {{ text.tdS }}
+          {{ text["Technical Data Sheet"] }}
         </li>
       </a>
       <a :href="prod.details.applicationSheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
-          {{ text.appS }}
+          {{ text["Application Sheet"] }}
         </li>
       </a>
       <a :href="prod.details.installationSheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
-          {{ text.instSh }}
+          {{ text["Installation Sheet"] }}
         </li>
       </a>
       <a @click.stop.prevent>
         <li @click="$emit('openVidModal',prod.details.installVideo)">
           <img src="../assets/play.png" alt="pdf-icon">
-          {{ text.instVid }}
+          {{ text["Installation Video"] }}
         </li>
       </a>
     </ul>

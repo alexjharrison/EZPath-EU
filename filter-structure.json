@@ -1,1162 +1,232 @@
-{
-  "english": [
-    {
-      "category": "Barrier Type",
-      "filters": [
-        {
-          "id": "wall",
-          "label": "Wall",
-          "children": [
-            {
-              "id": "wallFlexible",
-              "label": "Flexible",
-              "children": [
-                {
-                  "id": "fw100To122",
-                  "label": "100mm ≤ Thickness < 122mm"
-                },
-                {
-                  "id": "fwOver122",
-                  "label": "122mm ≤ Thickness"
-                }
-              ]
-            },
-            {
-              "id": "wallRigid",
-              "label": "Rigid",
-              "children": [
-                {
-                  "id": "wr100To122",
-                  "label": "100mm ≤ Thickness < 122mm"
-                },
-                {
-                  "id": "wr122To150",
-                  "label": "122mm ≤ Thickness < 150mm"
-                },
-                {
-                  "id": "wrOver150",
-                  "label": "150mm ≤ Thickness"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "floor",
-          "label": "Floor",
-          "children": [
-            {
-              "id": "floorRigid",
-              "label": "Rigid",
-              "children": [
-                {
-                  "id": "frOver150",
-                  "label": "150mm ≤ Thickness"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Performance",
-      "filters": [
-        {
-          "id": "el60",
-          "label": "El 60"
-        },
-        {
-          "id": "el90",
-          "label": "El 90"
-        },
-        {
-          "id": "el120",
-          "label": "El 120"
-        },
-        {
-          "id": "elOther",
-          "label": "Other"
-        }
-      ]
-    },
-    {
-      "category": "Services",
-      "filters": [
-        {
-          "id": "cables",
-          "label": "Cables Ø",
-          "children": [
-            {
-              "id": "cabUnder21mm",
-              "label": "Ø ≤ 21mm"
-            },
-            {
-              "id": "cab21To50mm",
-              "label": "21mm < Ø ≤ 50mm"
-            },
-            {
-              "id": "cab50To80mm",
-              "label": "50mm < Ø ≤ 80mm"
-            }
-          ]
-        },
-        {
-          "id": "pvcTubes",
-          "label": "PVC Tubes",
-          "children": [
-            {
-              "id": "pvcUnder16mm",
-              "label": "Ø ≤ 16.6mm"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Services Support Width",
-      "filters": [
-        {
-          "id": "ssw50mm",
-          "label": "50 mm Wide",
-          "children": [
-            {
-              "id": "ssw50mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw50mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw100mm",
-          "label": "100 mm Wide",
-          "children": [
-            {
-              "id": "ssw100mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw100mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw150mm",
-          "label": "150 mm Wide",
-          "children": [
-            {
-              "id": "ssw150mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw150mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw200mm",
-          "label": "200 mm Wide",
-          "children": [
-            {
-              "id": "ssw200mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw200mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw300mm",
-          "label": "300 mm Wide",
-          "children": [
-            {
-              "id": "ssw300mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw300mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw400mm",
-          "label": "400 mm Wide",
-          "children": [
-            {
-              "id": "ssw400mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw400mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw500mm",
-          "label": "500 mm Wide",
-          "children": [
-            {
-              "id": "ssw500mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw500mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw600mm",
-          "label": "600 mm Wide",
-          "children": [
-            {
-              "id": "ssw600mmUnder50",
-              "label": "Depth ≤ 50mm"
-            },
-            {
-              "id": "ssw600mmOver50",
-              "label": "Depth > 50mm"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "french": [
-    {
-      "category": "Type de Barrière",
-      "filters": [
-        {
-          "id": "wall",
-          "label": "Mur",
-          "children": [
-            {
-              "id": "wallFlexible",
-              "label": "Flexible",
-              "children": [
-                {
-                  "id": "fw100To122",
-                  "label": "100mm ≤ Épaisseur < 122mm"
-                },
-                {
-                  "id": "fwOver122",
-                  "label": "122mm ≤ Épaisseur"
-                }
-              ]
-            },
-            {
-              "id": "wallRigid",
-              "label": "Rigide",
-              "children": [
-                {
-                  "id": "wr100To122",
-                  "label": "100mm ≤ Épaisseur < 122mm"
-                },
-                {
-                  "id": "wr122To150",
-                  "label": "122mm ≤ Épaisseur < 150mm"
-                },
-                {
-                  "id": "wrOver150",
-                  "label": "150mm ≤ Épaisseur"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "floor",
-          "label": "Sol",
-          "children": [
-            {
-              "id": "floorRigid",
-              "label": "Rigide",
-              "children": [
-                {
-                  "id": "frOver150",
-                  "label": "150mm ≤ Épaisseur"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Performance",
-      "filters": [
-        {
-          "id": "el60",
-          "label": "El 60"
-        },
-        {
-          "id": "el90",
-          "label": "El 90"
-        },
-        {
-          "id": "el120",
-          "label": "El 120"
-        },
-        {
-          "id": "elOther",
-          "label": "Autre"
-        }
-      ]
-    },
-    {
-      "category": "Prestations de service",
-      "filters": [
-        {
-          "id": "cables",
-          "label": "Câbles Ø",
-          "children": [
-            {
-              "id": "cabUnder21mm",
-              "label": "Ø ≤ 21mm"
-            },
-            {
-              "id": "cab21To50mm",
-              "label": "21mm < Ø ≤ 50mm"
-            },
-            {
-              "id": "cab50To80mm",
-              "label": "50mm < Ø ≤ 80mm"
-            }
-          ]
-        },
-        {
-          "id": "pvcTubes",
-          "label": "Tubes en PVC",
-          "children": [
-            {
-              "id": "pvcUnder16mm",
-              "label": "Ø ≤ 16.6mm"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Largeur du Support des Services",
-      "filters": [
-        {
-          "id": "ssw50mm",
-          "label": "50 mm Large",
-          "children": [
-            {
-              "id": "ssw50mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw50mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw100mm",
-          "label": "100 mm Large",
-          "children": [
-            {
-              "id": "ssw100mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw100mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw150mm",
-          "label": "150 mm Large",
-          "children": [
-            {
-              "id": "ssw150mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw150mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw200mm",
-          "label": "200 mm Large",
-          "children": [
-            {
-              "id": "ssw200mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw200mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw300mm",
-          "label": "300 mm Large",
-          "children": [
-            {
-              "id": "ssw300mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw300mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw400mm",
-          "label": "400 mm Large",
-          "children": [
-            {
-              "id": "ssw400mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw400mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw500mm",
-          "label": "500 mm Large",
-          "children": [
-            {
-              "id": "ssw500mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw500mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw600mm",
-          "label": "600 mm Large",
-          "children": [
-            {
-              "id": "ssw600mmUnder50",
-              "label": "Profondeur ≤ 50mm"
-            },
-            {
-              "id": "ssw600mmOver50",
-              "label": "Profondeur > 50mm"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "german": [
-    {
-      "category": "Barrier Type",
-      "filters": [
-        {
-          "id": "wall",
-          "label": "Wand",
-          "children": [
-            {
-              "id": "wallFlexible",
-              "label": "Flexibel",
-              "children": [
-                {
-                  "id": "fw100To122",
-                  "label": "100mm ≤ Dicke < 122mm"
-                },
-                {
-                  "id": "fwOver122",
-                  "label": "122mm ≤ Dicke"
-                }
-              ]
-            },
-            {
-              "id": "wallRigid",
-              "label": "Starr",
-              "children": [
-                {
-                  "id": "wr100To122",
-                  "label": "100mm ≤ Dicke < 122mm"
-                },
-                {
-                  "id": "wr122To150",
-                  "label": "122mm ≤ Dicke < 150mm"
-                },
-                {
-                  "id": "wrOver150",
-                  "label": "150mm ≤ Dicke"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "floor",
-          "label": "Fußboden",
-          "children": [
-            {
-              "id": "floorRigid",
-              "label": "Starr",
-              "children": [
-                {
-                  "id": "frOver150",
-                  "label": "150mm ≤ Dicke"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Performance",
-      "filters": [
-        {
-          "id": "el60",
-          "label": "El 60"
-        },
-        {
-          "id": "el90",
-          "label": "El 90"
-        },
-        {
-          "id": "el120",
-          "label": "El 120"
-        },
-        {
-          "id": "elOther",
-          "label": "Andere"
-        }
-      ]
-    },
-    {
-      "category": "Dienstleistungen",
-      "filters": [
-        {
-          "id": "cables",
-          "label": "Kabel Ø",
-          "children": [
-            {
-              "id": "cabUnder21mm",
-              "label": "Ø ≤ 21mm"
-            },
-            {
-              "id": "cab21To50mm",
-              "label": "21mm < Ø ≤ 50mm"
-            },
-            {
-              "id": "cab50To80mm",
-              "label": "50mm < Ø ≤ 80mm"
-            }
-          ]
-        },
-        {
-          "id": "pvcTubes",
-          "label": "PVC-Rohre",
-          "children": [
-            {
-              "id": "pvcUnder16mm",
-              "label": "Ø ≤ 16.6mm"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Breite der Services-Unterstützung",
-      "filters": [
-        {
-          "id": "ssw50mm",
-          "label": "50 mm Groß",
-          "children": [
-            {
-              "id": "ssw50mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw50mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw100mm",
-          "label": "100 mm Groß",
-          "children": [
-            {
-              "id": "ssw100mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw100mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw150mm",
-          "label": "150 mm Groß",
-          "children": [
-            {
-              "id": "ssw150mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw150mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw200mm",
-          "label": "200 mm Groß",
-          "children": [
-            {
-              "id": "ssw200mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw200mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw300mm",
-          "label": "300 mm Groß",
-          "children": [
-            {
-              "id": "ssw300mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw300mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw400mm",
-          "label": "400 mm Groß",
-          "children": [
-            {
-              "id": "ssw400mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw400mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw500mm",
-          "label": "500 mm Groß",
-          "children": [
-            {
-              "id": "ssw500mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw500mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw600mm",
-          "label": "600 mm Groß",
-          "children": [
-            {
-              "id": "ssw600mmUnder50",
-              "label": "Tiefe ≤ 50mm"
-            },
-            {
-              "id": "ssw600mmOver50",
-              "label": "Tiefe > 50mm"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "italian": [
-    {
-      "category": "Tipo di Barriera",
-      "filters": [
-        {
-          "id": "wall",
-          "label": "Parete",
-          "children": [
-            {
-              "id": "wallFlexible",
-              "label": "Flessibile",
-              "children": [
-                {
-                  "id": "fw100To122",
-                  "label": "100mm ≤ Spessore < 122mm"
-                },
-                {
-                  "id": "fwOver122",
-                  "label": "122mm ≤ Spessore"
-                }
-              ]
-            },
-            {
-              "id": "wallRigid",
-              "label": "Rigido",
-              "children": [
-                {
-                  "id": "wr100To122",
-                  "label": "100mm ≤ Spessore < 122mm"
-                },
-                {
-                  "id": "wr122To150",
-                  "label": "122mm ≤ Spessore < 150mm"
-                },
-                {
-                  "id": "wrOver150",
-                  "label": "150mm ≤ Spessore"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "floor",
-          "label": "Pavimento",
-          "children": [
-            {
-              "id": "floorRigid",
-              "label": "Rigido",
-              "children": [
-                {
-                  "id": "frOver150",
-                  "label": "150mm ≤ Spessore"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Prestazione",
-      "filters": [
-        {
-          "id": "el60",
-          "label": "El 60"
-        },
-        {
-          "id": "el90",
-          "label": "El 90"
-        },
-        {
-          "id": "el120",
-          "label": "El 120"
-        },
-        {
-          "id": "elOther",
-          "label": "Altro"
-        }
-      ]
-    },
-    {
-      "category": "Servizi",
-      "filters": [
-        {
-          "id": "cables",
-          "label": "Cavi Ø",
-          "children": [
-            {
-              "id": "cabUnder21mm",
-              "label": "Ø ≤ 21mm"
-            },
-            {
-              "id": "cab21To50mm",
-              "label": "21mm < Ø ≤ 50mm"
-            },
-            {
-              "id": "cab50To80mm",
-              "label": "50mm < Ø ≤ 80mm"
-            }
-          ]
-        },
-        {
-          "id": "pvcTubes",
-          "label": "Tubi in PVC",
-          "children": [
-            {
-              "id": "pvcUnder16mm",
-              "label": "Ø ≤ 16.6mm"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Servizi di Supporto Larghezza",
-      "filters": [
-        {
-          "id": "ssw50mm",
-          "label": "50 mm Largo",
-          "children": [
-            {
-              "id": "ssw50mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw50mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw100mm",
-          "label": "100 mm Largo",
-          "children": [
-            {
-              "id": "ssw100mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw100mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw150mm",
-          "label": "150 mm Largo",
-          "children": [
-            {
-              "id": "ssw150mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw150mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw200mm",
-          "label": "200 mm Largo",
-          "children": [
-            {
-              "id": "ssw200mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw200mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw300mm",
-          "label": "300 mm Largo",
-          "children": [
-            {
-              "id": "ssw300mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw300mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw400mm",
-          "label": "400 mm Largo",
-          "children": [
-            {
-              "id": "ssw400mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw400mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw500mm",
-          "label": "500 mm Largo",
-          "children": [
-            {
-              "id": "ssw500mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw500mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw600mm",
-          "label": "600 mm Largo",
-          "children": [
-            {
-              "id": "ssw600mmUnder50",
-              "label": "Profondità ≤ 50mm"
-            },
-            {
-              "id": "ssw600mmOver50",
-              "label": "Profondità > 50mm"
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "dutch": [
-    {
-      "category": "Barrière Type",
-      "filters": [
-        {
-          "id": "wall",
-          "label": "Muur",
-          "children": [
-            {
-              "id": "wallFlexible",
-              "label": "Flexibele",
-              "children": [
-                {
-                  "id": "fw100To122",
-                  "label": "100mm ≤ Spessore < 122mm"
-                },
-                {
-                  "id": "fwOver122",
-                  "label": "122mm ≤ Spessore"
-                }
-              ]
-            },
-            {
-              "id": "wallRigid",
-              "label": "Stijf",
-              "children": [
-                {
-                  "id": "wr100To122",
-                  "label": "100mm ≤ Spessore < 122mm"
-                },
-                {
-                  "id": "wr122To150",
-                  "label": "122mm ≤ Spessore < 150mm"
-                },
-                {
-                  "id": "wrOver150",
-                  "label": "150mm ≤ Spessore"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "floor",
-          "label": "Verdieping",
-          "children": [
-            {
-              "id": "floorRigid",
-              "label": "Stijf",
-              "children": [
-                {
-                  "id": "frOver150",
-                  "label": "150mm ≤ Spessore"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Prestatie",
-      "filters": [
-        {
-          "id": "el60",
-          "label": "El 60"
-        },
-        {
-          "id": "el90",
-          "label": "El 90"
-        },
-        {
-          "id": "el120",
-          "label": "El 120"
-        },
-        {
-          "id": "elOther",
-          "label": "Anders"
-        }
-      ]
-    },
-    {
-      "category": "Diensten",
-      "filters": [
-        {
-          "id": "cables",
-          "label": "Kabels Ø",
-          "children": [
-            {
-              "id": "cabUnder21mm",
-              "label": "Ø ≤ 21mm"
-            },
-            {
-              "id": "cab21To50mm",
-              "label": "21mm < Ø ≤ 50mm"
-            },
-            {
-              "id": "cab50To80mm",
-              "label": "50mm < Ø ≤ 80mm"
-            }
-          ]
-        },
-        {
-          "id": "pvcTubes",
-          "label": "PVC-Buizen",
-          "children": [
-            {
-              "id": "pvcUnder16mm",
-              "label": "Ø ≤ 16.6mm"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "category": "Ondersteuning van Services Breedte",
-      "filters": [
-        {
-          "id": "ssw50mm",
-          "label": "50 mm Breed",
-          "children": [
-            {
-              "id": "ssw50mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw50mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw100mm",
-          "label": "100 mm Breed",
-          "children": [
-            {
-              "id": "ssw100mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw100mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw150mm",
-          "label": "150 mm Breed",
-          "children": [
-            {
-              "id": "ssw150mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw150mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw200mm",
-          "label": "200 mm Breed",
-          "children": [
-            {
-              "id": "ssw200mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw200mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw300mm",
-          "label": "300 mm Breed",
-          "children": [
-            {
-              "id": "ssw300mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw300mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw400mm",
-          "label": "400 mm Breed",
-          "children": [
-            {
-              "id": "ssw400mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw400mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw500mm",
-          "label": "500 mm Breed",
-          "children": [
-            {
-              "id": "ssw500mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw500mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        },
-        {
-          "id": "ssw600mm",
-          "label": "600 mm Breed",
-          "children": [
-            {
-              "id": "ssw600mmUnder50",
-              "label": "Diepte ≤ 50mm"
-            },
-            {
-              "id": "ssw600mmOver50",
-              "label": "Diepte > 50mm"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "category": "Barrier Type",
+    "filters": [
+      {
+        "id": "wall",
+        "label": "Wall",
+        "children": [
+          {
+            "id": "wallFlexible",
+            "label": "Flexible",
+            "children": [
+              {
+                "id": "fw100To122",
+                "label": "100mm ≤ Thickness < 122mm"
+              },
+              {
+                "id": "fwOver122",
+                "label": "122mm ≤ Thickness"
+              }
+            ]
+          },
+          {
+            "id": "wallRigid",
+            "label": "Rigid",
+            "children": [
+              {
+                "id": "wr100To122",
+                "label": "100mm ≤ Thickness < 122mm"
+              },
+              {
+                "id": "wr122To150",
+                "label": "122mm ≤ Thickness < 150mm"
+              },
+              {
+                "id": "wrOver150",
+                "label": "150mm ≤ Thickness"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "floor",
+        "label": "Floor",
+        "children": [
+          {
+            "id": "floorRigid",
+            "label": "Rigid",
+            "children": [
+              {
+                "id": "frOver150",
+                "label": "150mm ≤ Thickness"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Performance",
+    "filters": [
+      {
+        "id": "el60",
+        "label": "El 60"
+      },
+      {
+        "id": "el90",
+        "label": "El 90"
+      },
+      {
+        "id": "el120",
+        "label": "El 120"
+      },
+      {
+        "id": "elOther",
+        "label": "Other"
+      }
+    ]
+  },
+  {
+    "category": "Services",
+    "filters": [
+      {
+        "id": "cables",
+        "label": "Cables Ø",
+        "children": [
+          {
+            "id": "cabUnder21mm",
+            "label": "Ø ≤ 21mm"
+          },
+          {
+            "id": "cab21To50mm",
+            "label": "21mm < Ø ≤ 50mm"
+          },
+          {
+            "id": "cab50To80mm",
+            "label": "50mm < Ø ≤ 80mm"
+          }
+        ]
+      },
+      {
+        "id": "pvcTubes",
+        "label": "PVC Tubes",
+        "children": [
+          {
+            "id": "pvcUnder16mm",
+            "label": "Ø ≤ 16.6mm"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Services Support Width",
+    "filters": [
+      {
+        "id": "ssw50mm",
+        "label": "50 mm Wide",
+        "children": [
+          {
+            "id": "ssw50mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw50mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw100mm",
+        "label": "100 mm Wide",
+        "children": [
+          {
+            "id": "ssw100mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw100mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw150mm",
+        "label": "150 mm Wide",
+        "children": [
+          {
+            "id": "ssw150mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw150mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw200mm",
+        "label": "200 mm Wide",
+        "children": [
+          {
+            "id": "ssw200mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw200mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw300mm",
+        "label": "300 mm Wide",
+        "children": [
+          {
+            "id": "ssw300mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw300mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw400mm",
+        "label": "400 mm Wide",
+        "children": [
+          {
+            "id": "ssw400mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw400mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw500mm",
+        "label": "500 mm Wide",
+        "children": [
+          {
+            "id": "ssw500mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw500mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      },
+      {
+        "id": "ssw600mm",
+        "label": "600 mm Wide",
+        "children": [
+          {
+            "id": "ssw600mmUnder50",
+            "label": "Depth ≤ 50mm"
+          },
+          {
+            "id": "ssw600mmOver50",
+            "label": "Depth > 50mm"
+          }
+        ]
+      }
+    ]
+  }
+]

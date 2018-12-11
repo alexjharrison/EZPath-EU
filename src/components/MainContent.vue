@@ -2,20 +2,20 @@
   <div class="main-content">
     <i @click="toggleSidebar" class="fa fa-filter filter-button floating" aria-hidden="true"/>
     <simplebar class="simple-tree sb-closed" data-simplebar-auto-hide="true">
-      <TreeObjects class="tree-objects" @checked="filterList" :text="text"/>
-      <div class="close-sb" @click="toggleSidebar">{{ text.searchItems }}</div>
+      <TreeObjects :allText="allText" class="tree-objects" @checked="filterList" :text="text"/>
+      <div class="close-sb" @click="toggleSidebar">{{ text["Search Items"] }}</div>
     </simplebar>
     <div class="welcome-mobile" v-if="!sidebarOpen && !filteredProdList[0]">
-      <h2>{{ text.pressIcon }}</h2>
+      <h2>{{ text["Press the filter icon to start your search"] }}</h2>
       <i @click="toggleSidebar" class="fa fa-filter filter-button start-filter" aria-hidden="true"/>
     </div>
     <div @click="toggleSidebar" v-if="$mq==='mobile'" class="slider-mask"/>
     <simplebar v-if="$mq==='desktop'" class="simple-prod" data-simplebar-auto-hide="true">
       <div class="product-list">
-        <h2 v-if="filteredProdList[0]">{{filteredProdList.length}} {{ text.itemsAv }}</h2>
+        <h2 v-if="filteredProdList[0]">{{filteredProdList.length}} {{ text["Items Available"] }}</h2>
         <h2 v-else>
           <br>
-          {{ text.leftChoices }}
+          {{ text["Choose filter options from the choices to the left"] }}
         </h2>
         <transition-group name="products">
           <ProductBox
@@ -75,7 +75,7 @@ export default {
     VideoModal,
     simplebar
   },
-  props: ["text"],
+  props: ["text", "allText"],
   data() {
     return {
       selectedProd: {},
