@@ -18,8 +18,7 @@
 
 <script>
 import FilterCategory from "./FilterCategory";
-import allProducts from "../../data.json";
-import filterStructure from "../../filter-structure.json";
+import axios from "axios";
 
 export default {
   components: {
@@ -28,21 +27,42 @@ export default {
   props: ["text", "allText"],
   data() {
     return {
-      allProducts,
+      allProducts: [],
       allChecked: [],
+      fullPropertiesList: [],
       filteredProdList: this.allProducts,
       reset: false,
-      filterStructureEng: [...filterStructure],
-      filterStructureTranslated: filterStructure,
+      filterStructureEng: [],
+      filterStructureTranslated: [],
       //list of all checked id's
       isDisabled: [],
       phrases: Object.keys(this.allText.english)
     };
   },
   mounted() {
-    this.filteredProdList = this.allProducts;
-    this.isDisabled = disableCheckboxes(this.filteredProdList);
     setTimeout(this.cloneAndStartTranslate, 0);
+    axios
+      .get("https://alex-dev-api.stifirestop.com/ezpath-eu/products")
+      .then(({ data }) => {
+        //find where parent is blank and create array of category objects
+        let categories = data.allProperties
+          .filter(category => !category.parent)
+          .map(category => {
+            return this.generateTree(category, data.allProperties);
+          });
+
+        this.filterStructureEng = [...categories];
+        this.allProducts = this.filteredProdList = data.allProducts;
+        this.allProducts.forEach(prod => {
+          prod.properties.forEach(property => {
+            if (!this.fullPropertiesList.includes(property)) {
+              this.fullPropertiesList.push(property);
+            }
+          });
+        });
+        this.cloneAndStartTranslate();
+      })
+      .catch(err => console.log(err));
   },
   methods: {
     //push list of checked items from component and remove dupes
@@ -52,12 +72,76 @@ export default {
         (acc, val) => acc.concat(val),
         []
       );
-      this.filteredProdList = filterProds(this.allProducts, checkedFlatArr);
-      this.isDisabled = disableCheckboxes(this.filteredProdList);
+      this.filteredProdList = this.filterProds(checkedFlatArr);
+      this.isDisabled = this.disableCheckboxes();
       this.$emit("checked", {
         filteredProdList: this.filteredProdList,
         noneChecked: !values.checked.length
       });
+    },
+    disableCheckboxes() {
+      if (!this.filteredProdList[0]) return [];
+      let enabledItems = [];
+      this.filteredProdList.forEach(prod => {
+        prod.properties.forEach(property => {
+          if (!enabledItems.includes(property)) {
+            enabledItems.push(property);
+          }
+        });
+      });
+      return this.fullPropertiesList.filter(
+        property => !enabledItems.includes(property)
+      );
+    },
+    filterProds(checkedFlatArr) {
+      return this.allProducts.filter(prod => {
+        for (let i = 0; i < checkedFlatArr.length; i++) {
+          if (prod.properties.includes(checkedFlatArr[i])) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      });
+    },
+    generateTree(category, properties) {
+      let rootBranch = {
+        id: category.js_id,
+        category: category.label,
+        filters: properties
+          .filter(property => property.parent === category.js_id)
+          .map(property => {
+            let check = {
+              id: property.js_id,
+              label: property.label,
+              children: this.generateTreeBranchRecursive(
+                property.js_id,
+                properties
+              )
+            };
+            if (check.children.length === 0) delete check.children;
+            return check;
+          })
+      };
+      return rootBranch;
+    },
+    generateTreeBranchRecursive(parentId, properties) {
+      let output = properties.filter(property => parentId === property.parent);
+      if (output !== []) {
+        output = output.map(property => {
+          let check = {
+            id: property.js_id,
+            label: property.label.replace("@less_than", "≤"),
+            children: this.generateTreeBranchRecursive(
+              property.js_id,
+              properties
+            )
+          };
+          if (check.children.length === 0) delete check.children;
+          return check;
+        });
+      }
+      return output;
     },
     clear() {
       this.reset = !this.reset;
@@ -66,7 +150,6 @@ export default {
       this.filterStructureTranslated = JSON.parse(
         JSON.stringify(this.filterStructureEng)
       );
-      console.log(this.filterStructureTranslated);
       for (let i = 0; i < this.filterStructureTranslated.length; i++) {
         this.recursiveTranslate(this.filterStructureTranslated[i]);
       }
@@ -103,28 +186,6 @@ export default {
         this.onCheckClick({ value: i, checked: [] });
     }
   }
-};
-
-const filterProds = (allProducts, allChecked) => {
-  return allProducts.filter(prod => {
-    for (let i = 0; i < allChecked.length; i++) {
-      if (!prod["filters"][allChecked[i]]) {
-        return false;
-      }
-    }
-    return true;
-  });
-};
-
-const disableCheckboxes = filteredProds => {
-  if (!filteredProds[0]) return [];
-  let propertiesList = Object.keys(filteredProds[0].filters);
-  return propertiesList.filter(property => {
-    for (let i = 0; i < filteredProds.length; i++) {
-      if (filteredProds[i]["filters"][property]) return false;
-    }
-    return true;
-  });
 };
 </script>
 

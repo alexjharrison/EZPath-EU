@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@riophae/vue-treeselect": "0.0.37",
+    "axios": "^0.18.0",
     "simplebar-vue": "0.1.0-beta.2",
     "vue": "^2.5.17",
     "vue-mq": "^0.2.1"

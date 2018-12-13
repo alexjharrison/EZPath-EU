@@ -1,10 +1,10 @@
 <template>
   <div class="prod-deets">
-    <p>EZ-Path: {{prod.details.numDevices}}x {{prod.details.deviceName}}</p>
-    <p v-if="prod.details.plateKit">{{ text["Plate Kit"] }}: {{prod.details.plateKit}}</p>
+    <p>EZ-Path: {{prod.num_devices}}x {{prod.device_name}}</p>
+    <p v-if="prod.plate_kit">{{ text["Plate Kit"] }}: {{prod.plate_kit}}</p>
     <p
-      v-if="prod.details.addtlMaterial"
-    >{{ text["Additional Material"] }}: {{prod.details.addtlMaterial}}</p>
+      v-if="prod.additional_materials"
+    >{{ text["Additional Material"] }}: {{prod.additional_materials}}</p>
     <p>{{ text["Performance"] }}: {{ text["up to"] }} El{{elRating}}</p>
     <p>{{ text["Cables"] }}: {{cables}}</p>
     <p>{{barrierTypes}}</p>
@@ -15,36 +15,46 @@
 <script>
 export default {
   props: ["prod", "text"],
+  methods: {
+    inProps(prop) {
+      return this.prod.properties.includes(prop);
+    }
+  },
   computed: {
     elRating() {
-      if (this.prod.filters.el120) return 120;
-      else if (this.prod.filters.el90) return 90;
-      else if (this.prod.filters.el60) return 60;
+      if (this.inProps("el_120")) return 120;
+      else if (this.inProps("el_90")) return 90;
+      else if (this.inProps("el_60")) return 60;
       else return "?";
     },
     barrierTypes() {
-      const { wallFlexible, wallRigid, floorRigid } = this.prod.filters;
-      if (wallFlexible && wallRigid)
+      if (this.inProps("wall_flexible") && this.inProps("wall_rigid"))
         return `${this.text["Wall"]}: ${this.text["Flexible"]} & ${
           this.text["Rigid"]
         }`;
-      else if (wallFlexible)
+      else if (this.inProps("wall_flexible"))
         return `${this.text["Wall"]}: ${this.text["Flexible"]}`;
-      else if (wallRigid) return `${this.text["Wall"]}: ${this.text["Rigid"]}`;
-      else if (floorRigid)
+      else if (this.inProps("wall_rigid"))
+        return `${this.text["Wall"]}: ${this.text["Rigid"]}`;
+      else if (this.inProps("floor_rigid"))
         return `${this.text["Floor"]}: ${this.text["Rigid"]}`;
     },
     cables() {
-      const { cabUnder21mm, cab21To50mm, cab50To80mm } = this.prod.filters;
-      if (cabUnder21mm && cab21To50mm && cab50To80mm) return "Ø ≤ 80mm";
-      else if (cab21To50mm && cab50To80mm) return "21mm < Ø ≤ 80mm";
-      else if (cab50To80mm) return "50mm < Ø ≤ 80mm";
-      else if (cab21To50mm) return "21mm < Ø ≤ 50mm";
-      else if (cabUnder21mm) return "Ø ≤ 21mm";
+      if (
+        this.inProps("cables_21") &&
+        this.inProps("cables_21_50") &&
+        this.inProps("cables_50_80")
+      )
+        return "Ø ≤ 80mm";
+      else if (this.inProps("cables_21_50") && this.inProps("cables_50_80"))
+        return "21mm < Ø ≤ 80mm";
+      else if (this.inProps("cables_50_80")) return "50mm < Ø ≤ 80mm";
+      else if (this.inProps("cables_21_50")) return "21mm < Ø ≤ 50mm";
+      else if (this.inProps("cables_21")) return "Ø ≤ 21mm";
       else return "";
     },
     pvc() {
-      return this.prod.filters.pvcUnder16mm
+      return this.inProps("pvc_tubes_16")
         ? this.text["PVC Tubes"] + ": Ø ≤ 16.6mm"
         : "";
     }

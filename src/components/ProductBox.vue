@@ -1,35 +1,35 @@
 <template>
   <div @click="prodModalTrigger" class="product-item">
     <div class="prod-details">
-      <h3 id="prod-title">{{prod.details.system_shown}}</h3>
+      <h3 id="prod-title">{{prod.system_shown}}</h3>
       <ProductDetails class="prod-details-list" :prod="this.prod" :text="this.text"/>
     </div>
     <div class="prod-thumb">
-      <h3 class="prod-thumb-title">{{prod.details.system_shown}}</h3>
+      <h3 class="prod-thumb-title">{{prod.system_shown}}</h3>
       <img src="../assets/ezPathImage.png" alt="image-preview">
       <div class="more-info">{{ text["More Info"] }}</div>
     </div>
     <ul class="dl-list">
-      <a :href="prod.details.techDataSheet">
+      <a :href="prod.tech_data_sheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
           {{ text["Technical Data Sheet"] }}
         </li>
       </a>
-      <a :href="prod.details.applicationSheet">
+      <a :href="prod.application_sheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
           {{ text["Application Sheet"] }}
         </li>
       </a>
-      <a :href="prod.details.installationSheet">
+      <a :href="prod.installation_sheet">
         <li @click.stop>
           <img src="../assets/pdf.png" alt="pdf-icon">
           {{ text["Installation Sheet"] }}
         </li>
       </a>
       <a @click.stop.prevent>
-        <li @click="$emit('openVidModal',prod.details.installVideo)">
+        <li @click="$emit('openVidModal',prod.installation_video)">
           <img src="../assets/play.png" alt="pdf-icon">
           {{ text["Installation Video"] }}
         </li>
@@ -58,10 +58,8 @@ export default {
   },
   computed: {
     fullname() {
-      let deviceName = this.prod.details.deviceName;
-      let plateKit = this.prod.details.plateKit
-        ? " + " + this.prod.details.plateKit
-        : "";
+      let deviceName = this.prod.device_name;
+      let plateKit = this.prod.plate_kit ? " + " + this.prod.plate_kit : "";
       return deviceName + plateKit;
     }
   }
