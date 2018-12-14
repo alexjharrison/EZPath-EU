@@ -35,7 +35,7 @@ export default {
       filterStructureEng: [],
       filterStructureTranslated: [],
       //list of all checked id's
-      isDisabled: [],
+      isDisabled: ["el_other"],
       phrases: Object.keys(this.allText.english)
     };
   },
@@ -44,23 +44,19 @@ export default {
     axios
       .get("https://alex-dev-api.stifirestop.com/ezpath-eu/products")
       .then(({ data }) => {
+        this.fullPropertiesList = data.allProperties.map(
+          property => property.js_id
+        );
         //find where parent is blank and create array of category objects
         let categories = data.allProperties
           .filter(category => !category.parent)
           .map(category => {
             return this.generateTree(category, data.allProperties);
           });
-
         this.filterStructureEng = [...categories];
         this.allProducts = this.filteredProdList = data.allProducts;
-        this.allProducts.forEach(prod => {
-          prod.properties.forEach(property => {
-            if (!this.fullPropertiesList.includes(property)) {
-              this.fullPropertiesList.push(property);
-            }
-          });
-        });
         this.cloneAndStartTranslate();
+        this.disableCheckboxes();
       })
       .catch(err => console.log(err));
   },
