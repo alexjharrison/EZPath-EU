@@ -73,6 +73,7 @@ export default {
         []
       );
       this.filteredProdList = this.filterProds(checkedFlatArr);
+      console.log(this.filteredProdList);
       this.isDisabled = this.disableCheckboxes();
       this.$emit("checked", {
         filteredProdList: this.filteredProdList,
@@ -96,10 +97,9 @@ export default {
     filterProds(checkedFlatArr) {
       return this.allProducts.filter(prod => {
         for (let i = 0; i < checkedFlatArr.length; i++) {
-          if (prod.properties.includes(checkedFlatArr[i])) {
-            return true;
+          if (!prod.properties.includes(checkedFlatArr[i])) {
+            return false;
           }
-          return false;
         }
         return true;
       });
