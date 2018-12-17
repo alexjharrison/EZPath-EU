@@ -69,7 +69,6 @@ export default {
         []
       );
       this.filteredProdList = this.filterProds(checkedFlatArr);
-      console.log(this.filteredProdList);
       this.isDisabled = this.disableCheckboxes();
       this.$emit("checked", {
         filteredProdList: this.filteredProdList,
@@ -162,7 +161,7 @@ export default {
       } else {
         //stuff on label
         this.phrases.forEach(phrase => {
-          node.label = node.label.split(phrase).join(this.text[phrase]);
+          if (node.label === phrase) node.label = this.text[phrase];
         });
         if (node.children) {
           for (let i = 0; i < node.children.length; i++) {
