@@ -49,7 +49,7 @@ export default {
         );
         //find where parent is blank and create array of category objects
         let categories = data.allProperties
-          .filter(category => !category.parent)
+          .filter(category => !category.parent_id)
           .map(category => {
             return this.generateTree(category, data.allProperties);
           });
@@ -104,13 +104,13 @@ export default {
         id: category.js_id,
         category: category.label,
         filters: properties
-          .filter(property => property.parent === category.js_id)
+          .filter(property => property.parent_id == category.id)
           .map(property => {
             let check = {
               id: property.js_id,
               label: property.label,
               children: this.generateTreeBranchRecursive(
-                property.js_id,
+                property.id,
                 properties
               )
             };
@@ -121,16 +121,15 @@ export default {
       return rootBranch;
     },
     generateTreeBranchRecursive(parentId, properties) {
-      let output = properties.filter(property => parentId === property.parent);
+      let output = properties.filter(
+        property => parentId == property.parent_id
+      );
       if (output !== []) {
         output = output.map(property => {
           let check = {
             id: property.js_id,
             label: property.label.replace("@less_than", "≤"),
-            children: this.generateTreeBranchRecursive(
-              property.js_id,
-              properties
-            )
+            children: this.generateTreeBranchRecursive(property.id, properties)
           };
           if (check.children.length === 0) delete check.children;
           return check;
