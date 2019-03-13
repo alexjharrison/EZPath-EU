@@ -42,7 +42,7 @@ export default {
   mounted() {
     setTimeout(this.cloneAndStartTranslate, 0);
     axios
-      .get("https://alex-dev-api.stifirestop.com/ezpath-eu/products")
+      .get(process.env.VUE_APP_API)
       .then(({ data }) => {
         this.fullPropertiesList = data.allProperties.map(
           property => property.js_id
