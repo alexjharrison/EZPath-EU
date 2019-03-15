@@ -6,7 +6,7 @@
     </div>
     <div class="prod-thumb">
       <h3 class="prod-thumb-title">{{prod.system_shown}}</h3>
-      <img src="../assets/ezPathImage.png" alt="image-preview">
+      <img :src="`${assets}${prod.image_location}.png`" alt="image-preview">
       <div class="more-info">{{ text["More Info"] }}</div>
     </div>
     <ul class="dl-list">
@@ -47,7 +47,9 @@ export default {
   },
   props: ["prod", "index", "text"],
   data() {
-    return {};
+    return {
+      assets: "https://assets.stifirestop.com/images/ezpath-eu/"
+    };
   },
   methods: {
     prodModalTrigger() {
@@ -62,6 +64,9 @@ export default {
       let plateKit = this.prod.plate_kit ? " + " + this.prod.plate_kit : "";
       return deviceName + plateKit;
     }
+  },
+  mounted() {
+    console.log(this.prod);
   }
 };
 </script>

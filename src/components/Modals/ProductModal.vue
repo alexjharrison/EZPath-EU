@@ -4,7 +4,11 @@
       <div @click.stop class="modal-prod">
         <div class="display">
           <h2>{{prod.system_shown}}</h2>
-          <img class="prod-photo" :src="prod.image_location" alt="placeholder">
+          <img
+            class="prod-photo"
+            :src="`${assets}${encodeURIComponent(prod.image_location)}.png`"
+            alt="placeholder"
+          >
         </div>
         <div class="prod-text">
           <p>EZ-Path: {{prod.num_devices}}x {{prod.device_name}}</p>
@@ -28,7 +32,7 @@ export default {
   props: ["prod", "text"],
   data() {
     return {
-      stuff: "stuff"
+      assets: "https://assets.stifirestop.com/images/ezpath-eu/"
     };
   },
   methods: {

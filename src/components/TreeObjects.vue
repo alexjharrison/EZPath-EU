@@ -1,18 +1,21 @@
 <template>
-  <div class="tree-column">
-    <button class="reset" @click="clear">{{ text["Clear All"] }}</button>
-    <FilterCategory
-      v-for="(category,index) in filterStructureTranslated"
-      class="filter-prop"
-      :categoryName="category.category"
-      :filters="category.filters"
-      :disabledList="isDisabled"
-      v-on:checked="onCheckClick"
-      :key="category.filters[category.filters.length-1].label"
-      :index="index"
-      :text="text"
-      :reset="reset"
-    />
+  <div>
+    <div v-if="allProducts.length===0" class="loader"></div>
+    <div v-else class="tree-column">
+      <button class="reset" @click="clear">{{ text["Clear All"] }}</button>
+      <FilterCategory
+        v-for="(category,index) in filterStructureTranslated"
+        class="filter-prop"
+        :categoryName="category.category"
+        :filters="category.filters"
+        :disabledList="isDisabled"
+        v-on:checked="onCheckClick"
+        :key="category.filters[category.filters.length-1].label"
+        :index="index"
+        :text="text"
+        :reset="reset"
+      />
+    </div>
   </div>
 </template>
 
@@ -49,8 +52,9 @@ export default {
         );
         //find where parent is blank and create array of category objects
         let categories = data.allProperties
-          .filter(category => !category.parent_id)
+          .filter(category => !category.parent)
           .map(category => {
+            console.log(category);
             return this.generateTree(category, data.allProperties);
           });
         this.filterStructureEng = [...categories];
@@ -104,13 +108,13 @@ export default {
         id: category.js_id,
         category: category.label,
         filters: properties
-          .filter(property => property.parent_id == category.id)
+          .filter(property => property.parent === category.js_id)
           .map(property => {
             let check = {
               id: property.js_id,
               label: property.label,
               children: this.generateTreeBranchRecursive(
-                property.id,
+                property.js_id,
                 properties
               )
             };
@@ -121,15 +125,16 @@ export default {
       return rootBranch;
     },
     generateTreeBranchRecursive(parentId, properties) {
-      let output = properties.filter(
-        property => parentId == property.parent_id
-      );
+      let output = properties.filter(property => parentId === property.parent);
       if (output !== []) {
         output = output.map(property => {
           let check = {
             id: property.js_id,
             label: property.label.replace("@less_than", "≤"),
-            children: this.generateTreeBranchRecursive(property.id, properties)
+            children: this.generateTreeBranchRecursive(
+              property.js_id,
+              properties
+            )
           };
           if (check.children.length === 0) delete check.children;
           return check;
@@ -208,5 +213,64 @@ export default {
 }
 .filter-prop {
   margin-top: 15px;
+}
+
+/* spinner css */
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #f47836;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
 }
 </style>

@@ -28,10 +28,14 @@ export default {
     "Search Items": "Search Items",
     "Barrier Type": "Barrier Type",
     Other: "Other",
-    Services: "Services",
     "Services Support Width": "Services Support Width",
+    Services: "Services",
     Wide: "Wide",
-    Depth: "Depth"
+    Depth: "Depth",
+    optional: "optional",
+    Retrofit: "Retrofit",
+    "For existing cables": "For existing cables",
+    "For new construction": "For new construction"
   },
   french: {
     "Technical Data Sheet": "Fiche Technique",
@@ -62,10 +66,14 @@ export default {
     "Search Items": "Rechercher des Articles",
     "Barrier Type": "Type de Barrière",
     Other: "Autre",
-    Services: "Traversants",
     "Services Support Width": "Largeur du Support des Services",
-    Wide: "Large",
-    Depth: "Profondeur"
+    Services: "Traversants",
+    Wide: "Largeur",
+    Depth: "Profondeur",
+    optional: "optionnelle",
+    Retrofit: "Retrofit",
+    "For existing cables": "Pour câbles existants",
+    "For new construction": "Pour nouvelle construction"
   },
   german: {
     "Technical Data Sheet": "Technisches Datenblatt",
@@ -96,10 +104,14 @@ export default {
     "Search Items": "Artikel Suchen",
     "Barrier Type": "Barrier Type",
     Other: "Andere",
-    Services: "Dienstleistungen",
     "Services Support Width": "Breite der Services-Unterstützung",
+    Services: "Dienstleistungen",
     Wide: "Groß",
-    Depth: "Tiefe"
+    Depth: "Tiefe",
+    optional: "wahlweise",
+    Retrofit: "Nachrüstung",
+    "For existing cables": "Für vorhandene Kabel",
+    "For new construction": "Für den Neubau"
   },
   italian: {
     "Technical Data Sheet": "Scheda Tecnica",
@@ -130,10 +142,14 @@ export default {
     "Search Items": "Cerca Oggetti",
     "Barrier Type": "Tipo di Barriera",
     Other: "Altro",
-    Services: "Servizi",
     "Services Support Width": "Servizi di Supporto Larghezza",
+    Services: "Servizi",
     Wide: "Largo",
-    Depth: "Profondità"
+    Depth: "Profondità",
+    optional: "opzionale",
+    Retrofit: "Retrofit",
+    "For existing cables": "Per cavi esistenti",
+    "For new construction": "Per nuova costruzione"
   },
   dutch: {
     "Technical Data Sheet": "Technisch Gegevensblad",
@@ -164,9 +180,13 @@ export default {
     "Search Items": "Zoek Items",
     "Barrier Type": "Barrière Type",
     Other: "Anders",
-    Services: "Diensten",
     "Services Support Width": "Ondersteuning van Services Breedte",
+    Services: "Diensten",
     Wide: "Breed",
-    Depth: "Diepte"
+    Depth: "Diepte",
+    optional: "facultatief",
+    Retrofit: "Retrofit",
+    "For existing cables": "Voor bestaande kabels",
+    "For new construction": "Voor nieuwbouw"
   }
 };

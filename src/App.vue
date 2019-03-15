@@ -3,7 +3,7 @@
     <div class="header">
       <div class="header-text">
         <img class="logo" src="./assets/ezPathLogoOrange.png" alt="logo">
-        <h1>{{" "}}{{ translations[language]["System Selector"] }}</h1>
+        <h1>{{ " " }}{{ translations[language]["System Selector"] }}</h1>
       </div>
       <div class="lang-col">
         <p>{{ translations[language]["Select Language"] }}</p>
@@ -123,7 +123,7 @@ h1 {
   box-shadow: none;
 }
 
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1090px) {
   .header-text {
     display: flex;
     justify-content: center;
