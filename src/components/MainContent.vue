@@ -1,22 +1,48 @@
 <template>
-  <div class="main-content">
-    <i @click="toggleSidebar" class="fa fa-filter filter-button floating" aria-hidden="true"/>
-    <simplebar class="simple-tree sb-closed" data-simplebar-auto-hide="true">
-      <TreeObjects :allText="allText" class="tree-objects" @checked="filterList" :text="text"/>
-      <div class="close-sb" @click="toggleSidebar">{{ text["Search Items"] }}</div>
-    </simplebar>
-    <div class="welcome-mobile" v-if="!sidebarOpen && !filteredProdList[0]">
-      <h2>{{ text["Press the filter icon to start your search"] }}</h2>
-      <i @click="toggleSidebar" class="fa fa-filter filter-button start-filter" aria-hidden="true"/>
-    </div>
-    <div @click="toggleSidebar" v-if="$mq==='mobile'" class="slider-mask"/>
-    <simplebar v-if="$mq==='desktop'" class="simple-prod" data-simplebar-auto-hide="true">
-      <div class="product-list">
-        <h2 v-if="filteredProdList[0]">{{filteredProdList.length}} {{ text["Items Available"] }}</h2>
-        <h2 v-else>
-          <br>
-          {{ text["Choose filter options from the choices to the left"] }}
-        </h2>
+  <div>
+    <div v-if="!systemsLoaded" class="loader"></div>
+    <div class="main-content">
+      <i @click="toggleSidebar" class="fa fa-filter filter-button floating" aria-hidden="true"/>
+      <simplebar class="simple-tree sb-closed" data-simplebar-auto-hide="true">
+        <TreeObjects
+          @loaded="systemsLoaded=true"
+          :allText="allText"
+          class="tree-objects"
+          @checked="filterList"
+          :text="text"
+        />
+        <div class="close-sb" @click="toggleSidebar">{{ text["Search Items"] }}</div>
+      </simplebar>
+      <div class="welcome-mobile" v-if="!sidebarOpen && !filteredProdList[0]">
+        <h2>{{ text["Press the filter icon to start your search"] }}</h2>
+        <i
+          @click="toggleSidebar"
+          class="fa fa-filter filter-button start-filter"
+          aria-hidden="true"
+        />
+      </div>
+      <div @click="toggleSidebar" v-if="$mq==='mobile'" class="slider-mask"/>
+      <simplebar v-if="$mq==='desktop'" class="simple-prod" data-simplebar-auto-hide="true">
+        <div class="product-list">
+          <h2 v-if="filteredProdList[0]">{{filteredProdList.length}} {{ text["Items Available"] }}</h2>
+          <h2 v-else>
+            <br>
+            {{ systemsLoaded ? text["Choose filter options from the choices to the left"] : "" }}
+          </h2>
+          <transition-group name="products">
+            <ProductBox
+              v-for="(prod,index) in filteredProdList"
+              :prod="prod"
+              :index="index"
+              :key="index"
+              @prodModalTrigger="prodModalTrigger"
+              @openVidModal="vidModalTrigger"
+              :text="text"
+            />
+          </transition-group>
+        </div>
+      </simplebar>
+      <div v-if="$mq==='mobile'" class="simple-prod-mobile">
         <transition-group name="products">
           <ProductBox
             v-for="(prod,index) in filteredProdList"
@@ -29,34 +55,21 @@
           />
         </transition-group>
       </div>
-    </simplebar>
-    <div v-if="$mq==='mobile'" class="simple-prod-mobile">
-      <transition-group name="products">
-        <ProductBox
-          v-for="(prod,index) in filteredProdList"
-          :prod="prod"
-          :index="index"
-          :key="index"
-          @prodModalTrigger="prodModalTrigger"
-          @openVidModal="vidModalTrigger"
-          :text="text"
-        />
-      </transition-group>
+      <ProductModal
+        class="modal"
+        @closeModal="closeModal"
+        :prod="selectedProd"
+        v-if="prodModalOpen"
+        :text="text"
+      />
+      <VideoModal
+        class="modal"
+        @closeModal="closeModal"
+        :video="selectedVideo"
+        v-if="vidModalOpen"
+        :text="text"
+      />
     </div>
-    <ProductModal
-      class="modal"
-      @closeModal="closeModal"
-      :prod="selectedProd"
-      v-if="prodModalOpen"
-      :text="text"
-    />
-    <VideoModal
-      class="modal"
-      @closeModal="closeModal"
-      :video="selectedVideo"
-      v-if="vidModalOpen"
-      :text="text"
-    />
   </div>
 </template>
 
@@ -83,7 +96,8 @@ export default {
       vidModalOpen: false,
       selectedVideo: "",
       filteredProdList: [],
-      sidebarOpen: false
+      sidebarOpen: false,
+      systemsLoaded: false
     };
   },
   methods: {
@@ -141,6 +155,7 @@ export default {
 .tree-objects {
   width: 300px;
   flex-shrink: 0;
+  overflow-y: hidden;
 }
 .product-list {
   text-align: center;

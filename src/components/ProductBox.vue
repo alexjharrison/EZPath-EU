@@ -64,9 +64,6 @@ export default {
       let plateKit = this.prod.plate_kit ? " + " + this.prod.plate_kit : "";
       return deviceName + plateKit;
     }
-  },
-  mounted() {
-    console.log(this.prod);
   }
 };
 </script>

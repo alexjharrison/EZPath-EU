@@ -15,7 +15,7 @@
           <p v-if="prod.plate_kit">{{ text["Plate Kit"] }}: {{prod.plate_kit}}</p>
           <p
             v-if="prod.additional_materials"
-          >{{ text["Additional Material"] }}: {{prod.additionalmaterials}}</p>
+          >{{ text["Additional Material"] }}: {{prod.additional_materials}}</p>
           <p>{{ text["Performance"] }}: {{ text["up to"] }} El{{elRating}}</p>
           <p>{{ text["Cables"] }}: {{cables}}</p>
           <p>{{barrierTypes}}</p>
@@ -42,7 +42,8 @@ export default {
   },
   computed: {
     elRating() {
-      if (this.inProps("el_120")) return 120;
+      if (this.inProps("el_180")) return 180;
+      else if (this.inProps("el_120")) return 120;
       else if (this.inProps("el_90")) return 90;
       else if (this.inProps("el_60")) return 60;
       else return "?";

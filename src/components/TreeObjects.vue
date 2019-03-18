@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-if="allProducts.length===0" class="loader"></div>
+    <!-- <div v-if="allProducts.length===0" class="loader"></div> -->
+    <div v-if="allProducts.length===0"></div>
     <div v-else class="tree-column">
       <button class="reset" @click="clear">{{ text["Clear All"] }}</button>
       <FilterCategory
@@ -45,7 +46,7 @@ export default {
   mounted() {
     setTimeout(this.cloneAndStartTranslate, 0);
     axios
-      .get(process.env.VUE_APP_API)
+      .get(process.env.VUE_APP_API + "products")
       .then(({ data }) => {
         this.fullPropertiesList = data.allProperties.map(
           property => property.js_id
@@ -54,13 +55,13 @@ export default {
         let categories = data.allProperties
           .filter(category => !category.parent)
           .map(category => {
-            console.log(category);
             return this.generateTree(category, data.allProperties);
           });
         this.filterStructureEng = [...categories];
         this.allProducts = this.filteredProdList = data.allProducts;
         this.cloneAndStartTranslate();
         this.disableCheckboxes();
+        this.$emit("loaded");
       })
       .catch(err => console.log(err));
   },
@@ -213,64 +214,5 @@ export default {
 }
 .filter-prop {
   margin-top: 15px;
-}
-
-/* spinner css */
-.loader,
-.loader:before,
-.loader:after {
-  border-radius: 50%;
-  width: 2.5em;
-  height: 2.5em;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: load7 1.8s infinite ease-in-out;
-  animation: load7 1.8s infinite ease-in-out;
-}
-.loader {
-  color: #f47836;
-  font-size: 10px;
-  margin: 80px auto;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
-}
-.loader:before,
-.loader:after {
-  content: "";
-  position: absolute;
-  top: 0;
-}
-.loader:before {
-  left: -3.5em;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 3.5em;
-}
-@-webkit-keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
-}
-@keyframes load7 {
-  0%,
-  80%,
-  100% {
-    box-shadow: 0 2.5em 0 -1.3em;
-  }
-  40% {
-    box-shadow: 0 2.5em 0 0;
-  }
 }
 </style>

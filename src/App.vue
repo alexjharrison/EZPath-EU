@@ -1,47 +1,44 @@
 <template>
   <div id="app">
-    <div class="header">
-      <div class="header-text">
-        <img class="logo" src="./assets/ezPathLogoOrange.png" alt="logo">
-        <h1>{{ " " }}{{ translations[language]["System Selector"] }}</h1>
-      </div>
-      <div class="lang-col">
-        <p>{{ translations[language]["Select Language"] }}</p>
-        <div class="language-select">
-          <img
-            v-for="languageDisplayed in languagesDisplayed"
-            :key="languageDisplayed"
-            :src="`/img/`+languageDisplayed+`_flag.png`"
-            :alt="languageDisplayed"
-            @click="selectLanguage"
-          >
-        </div>
-      </div>
-    </div>
-    <MainContent :text="translations[language]" :allText="translations"/>
+    <HeaderBar @newLang="selectLanguage" :language="language" :translations="translations"/>
+    <div v-if="loading"></div>
+    <MainContent v-else :text="translations[language]" :allText="translations"/>
   </div>
 </template>
 
 <script>
 import MainContent from "./components/MainContent";
-import Translations from "./translations";
+import HeaderBar from "./components/Header";
+import Axios from "axios";
 
 export default {
   name: "app",
   components: {
-    MainContent
+    MainContent,
+    HeaderBar
   },
   data() {
     return {
+      translations: null,
       language: localStorage.getItem("ezpath-language") || "english",
-      languagesDisplayed: ["english", "french", "german", "italian", "dutch"],
-      translations: Translations
+      loading: true
     };
   },
+
+  mounted() {
+    Axios.get(process.env.VUE_APP_API + "translations")
+      .then(({ data }) => {
+        this.translations = data;
+        this.loading = false;
+      })
+      .catch(e => {
+        throw new Error(e);
+      });
+  },
   methods: {
-    selectLanguage(e) {
-      this.language = e.target.alt;
-      localStorage.setItem("ezpath-language", e.target.alt);
+    selectLanguage(newLang) {
+      this.language = newLang;
+      localStorage.setItem("ezpath-language", newLang);
     }
   }
 };
@@ -61,46 +58,9 @@ body {
 h1 {
   text-align: center;
 }
-.header h1 {
-  display: inline;
-  font-weight: 200;
-  font-size: 44px;
-}
-.logo {
-  width: 237px;
-  height: 41px;
-}
 .drop-downs {
   font-size: 14px;
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1322px;
-  margin: 0 auto;
-  border-bottom: 2px rgb(224, 224, 222) solid;
-  padding: 27px;
-}
-
-.lang-col {
-  display: inline;
-  text-align: center;
-}
-
-.lang-col p {
-  margin: 0;
-}
-.language-select img {
-  width: 55px;
-  height: 35px;
-  margin: 3px;
-  border: 1px rgb(224, 224, 222) solid;
-}
-
-.language-select img:hover {
-  opacity: 0.8;
-  cursor: pointer;
+  z-index: 0;
 }
 
 .vue-treeselect__menu-container {
@@ -122,44 +82,68 @@ h1 {
 .vue-treeselect--open-below .vue-treeselect__menu {
   box-shadow: none;
 }
-
-@media only screen and (max-width: 1090px) {
-  .header-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .header h1 {
-    display: block;
-    margin: 0;
-    font-size: 34px;
-  }
-}
 @media only screen and (max-width: 800px) {
-  .header {
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px;
-    padding-bottom: 0;
-  }
-  .lang-col {
-    border-top: 2px rgb(224, 224, 222) solid;
-    padding: 8px;
-  }
-  .language-select img {
-    width: 45px;
-    height: 28px;
-    margin: 2px;
-  }
   .vue-treeselect__menu {
     line-height: 250%;
   }
 }
-@media only screen and (max-width: 500px) {
-  .header {
-    flex-wrap: wrap;
-    justify-content: center;
+
+/* spinner css */
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+.loader {
+  color: #f47836;
+  font-size: 10px;
+  margin: 80px auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+.loader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 3.5em;
+}
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
+  }
+}
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    box-shadow: 0 2.5em 0 0;
   }
 }
 </style>
