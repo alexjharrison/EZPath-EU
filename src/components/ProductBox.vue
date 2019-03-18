@@ -86,6 +86,10 @@ export default {
     justify-content: space-around;
   }
 }
+.product-item > * {
+  width: 32%;
+}
+
 .prod-thumb img {
   max-width: 200px;
   position: relative;
@@ -93,6 +97,7 @@ export default {
 }
 .prod-thumb-title {
   display: none;
+  text-align: center;
 }
 .product-item:hover {
   background-color: rgb(255, 250, 245);

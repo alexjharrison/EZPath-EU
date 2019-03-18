@@ -111,6 +111,17 @@ export default {
 }
 .close-button {
   align-self: flex-end;
+  background-color: white;
+  border: 2px solid rgb(224, 224, 222);
+  border-radius: 5px;
+  color: rgb(60, 36, 2);
+  font-weight: 600;
+  transition: all linear 200ms;
+  outline: none;
+  cursor: pointer;
+}
+.close-button:hover {
+  border: #888 2px solid;
 }
 .display h2 {
   text-align: center;
