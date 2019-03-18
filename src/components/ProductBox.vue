@@ -86,10 +86,15 @@ export default {
     justify-content: space-around;
   }
 }
+.prod-details {
+  text-align: right;
+}
 .product-item > * {
   width: 32%;
 }
-
+.prod-thumb {
+  text-align: center;
+}
 .prod-thumb img {
   max-width: 200px;
   position: relative;
