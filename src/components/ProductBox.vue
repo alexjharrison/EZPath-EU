@@ -6,7 +6,7 @@
     </div>
     <div class="prod-thumb">
       <h3 class="prod-thumb-title">{{prod.system_shown}}</h3>
-      <img :src="`${assets}${prod.image_location}.png`" alt="image-preview">
+      <img :src="`${assets}${prod.image_location}.png`" :srcset="srcset" alt="image-preview">
       <div class="more-info">{{ text["More Info"] }}</div>
     </div>
     <ul class="dl-list">
@@ -63,6 +63,15 @@ export default {
       let deviceName = this.prod.device_name;
       let plateKit = this.prod.plate_kit ? " + " + this.prod.plate_kit : "";
       return deviceName + plateKit;
+    },
+    srcset() {
+      return `${encodeURI(
+        this.assets + this.prod.image_location
+      )}.png 1x, ${encodeURI(
+        this.assets + this.prod.image_location
+      )}@2x.png 2x, ${encodeURI(
+        this.assets + this.prod.image_location
+      )}@3x.png 3x`;
     }
   }
 };

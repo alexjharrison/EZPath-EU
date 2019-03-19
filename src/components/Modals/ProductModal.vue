@@ -16,10 +16,12 @@
           <p
             v-if="prod.additional_materials"
           >{{ text["Additional Material"] }}: {{prod.additional_materials}}</p>
-          <p>{{ text["Performance"] }}: {{ text["up to"] }} El{{elRating}}</p>
+          <p>{{ text["Performance"] }}: {{ text["up to"] }} {{elRating}}</p>
           <p>{{ text["Cables"] }}: {{cables}}</p>
           <p>{{barrierTypes}}</p>
           <p v-if="pvc">{{pvc}}</p>
+          <p v-if="inProps('existing')">{{text["For existing cables"]}}</p>
+          <p v-if="inProps('new')">{{text["For new construction"]}}</p>
         </div>
         <button class="close-button" @click="$emit('closeModal')">Close</button>
       </div>
@@ -42,11 +44,19 @@ export default {
   },
   computed: {
     elRating() {
-      if (this.inProps("el_180")) return 180;
-      else if (this.inProps("el_120")) return 120;
-      else if (this.inProps("el_90")) return 90;
-      else if (this.inProps("el_60")) return 60;
-      else return "?";
+      let ratings = [];
+      if (this.inProps("el_180")) ratings.push("El 180");
+      else if (this.inProps("el_120")) ratings.push("El 120");
+      else if (this.inProps("el_90")) ratings.push("El 90");
+      else if (this.inProps("el_60")) ratings.push("El 60");
+
+      if (this.inProps("e_240")) ratings.push("E 240");
+      else if (this.inProps("e_180")) ratings.push("E 180");
+      else if (this.inProps("e_120")) ratings.push("E 120");
+      else if (this.inProps("e_90")) ratings.push("E 90");
+      else if (this.inProps("e_60")) ratings.push("E 60");
+
+      return ratings.join(", ");
     },
     barrierTypes() {
       if (this.inProps("wall_flexible") && this.inProps("wall_rigid"))
@@ -108,6 +118,7 @@ export default {
 }
 .prod-text {
   margin-left: 10px;
+  line-height: 0.7em;
 }
 .close-button {
   align-self: flex-end;
